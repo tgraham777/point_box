@@ -1,0 +1,16 @@
+<h1>Welcome, <%= @user.name %>!</h1>
+
+<% if @user.points %>
+  Total points: <%= @user.points %>
+<% else %>
+  Total points: 0
+<% end %>
+
+Available rewards:
+<ul>
+  <% @rewards.each do |reward| %>
+    <li>
+      <%= reward.name %>
+    </li>
+  <% end %>
+</ul>
