@@ -1,0 +1,6 @@
+<h1>Rewards</h1>
+
+<% @rewards.each do |reward| %>
+  <%= link_to reward.name, user_reward_path(reward) %><br>
+  <%= reward.cost %> points <br>
+<% end %>

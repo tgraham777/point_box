@@ -8,13 +8,14 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
-      flash[:error] = "Incorrect login."
-      redirect_to new_user_path
+      flash[:message] = "Incorrect login."
+      redirect_to login_path
     end
   end
 
   def destroy
     session.clear
+    flash[:notice] = "You have successfully logged out."
     redirect_to login_path
   end
 end

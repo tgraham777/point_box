@@ -1,0 +1,8 @@
+<h1><%= @user.name %></h1>
+
+<%= form_for([:admin, @user]) do |f| %>
+ <%= f.label :points %>
+ <%= f.text_field :points %>
+
+ <%= f.submit "Update user points" %>
+<% end %>

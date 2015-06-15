@@ -7,9 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if current_user %>
-    Welcome, <%= current_user.name %>!
-    <%= link_to "Logout", logout_path, method: :delete %>
+  <% if current_user == nil %>
+    <li><%= link_to "Login", login_path %></li>
+    <li><%= link_to "New user", new_user_path %></li>
+  <% elsif current_admin? %>
+    <li><%= link_to "New reward", new_admin_reward_path %></li>
+    <li><%= link_to "Rewards index", admin_rewards_path  %></li>
+    <li><%= link_to "Users index", admin_users_path  %></li>
+    <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+  <% else %>
+    <li><%= link_to "Browse Rewards", user_rewards_path %></li>
+    <li><%= link_to "Dashboard", user_path %></li>
+    <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+  <% end %> 
+
+  <% flash.each do |type, message| %>
+    <div class="alert flash <%= type %>">
+      <%= message %>
+    </div>
   <% end %>
 <%= yield %>
 

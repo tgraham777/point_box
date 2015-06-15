@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  resources :users do
+  resources :users
+  root 'sessions#new'
+
+  namespace :admin do
+    resources :users
     resources :rewards
+  end
+
+  namespace :user do
+    resources :rewards, only: [:index, :show]
   end
 
   get '/login', to: 'sessions#new'
